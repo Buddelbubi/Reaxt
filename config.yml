@@ -1,0 +1,54 @@
+#     ____                  __ 
+#    / __ \___  ____ __  __/ /_
+#   / /_/ / _ \/ __ `/ |/_/ __/
+#  / _, _/  __/ /_/ />  </ /_  
+# /_/ |_|\___/\__,_/_/|_|\__/  
+# by Buddelbubi
+
+# Anti Lag Configuration
+
+IgnoredWorlds:
+   - 'Lobby'
+   - 'Citybuild'
+   - 'Farmworld'
+
+IgnoredEntitys:
+   - 'Armor Stand'
+
+ignoreNametagEntitys: true
+preventNametaggingIgnoredEntitys: true #
+
+PlayerLookupRange: 20 # If Reaxt detects a lag, it will mark all players in the range from the origen as the responsible. -1 to only use chunks.
+OperatorDefaultLogger: false # if true, operators will be in logger mode by default.
+
+ChunkEntityLimit:
+   Limit: 128 # The amount of entitys in a chunk until actions take place, -1 to disable.
+   PreventOverflow: true # Prevents any entitys from spawning if the limit is reached.
+   ClearAfter: 100 # 100 Ticks (5 Seconds)
+   ChunkCenterNearbyRangeExtention: 20 # Extends the clearing radius by 20. Does more calculations, but affects more entitys. -1 to disable
+   NotifyAffected: true
+WorldEntityLimit:
+   Limit: 1024 # The amount of entitys in a world until actions take place, -1 to disable.
+   PreventOverflow: true # Prevents any entitys from spawning if the limit is reached.
+   ClearAfter: 200 # 200 Ticks (10 Seconds)
+   NotifyAffected: true
+
+Scanner: #Scanner may increase the load on every cycle, but will help on fighting abusement.
+   ScheduleTicks: 6000 # 5 Minutes / -1 to disable
+   ScanModuloEntitySize: 100 # Scans when the entitycound divided by 100 is 0. (Every 100 entitys) 
+   CompareLocations: # Comparing the location of the entitys to prevent entity stacking.
+      Enabled: true
+      KillStacks: true
+      IdentifyAsStack: 32 # Amount of entities at one location to be concidered as a stack.
+      NotifyAffected: true
+
+Limitation: # All Limitations are Chunk Based!
+   ScheduleTicks: 60 # 3 Second
+   Redstone: 6000 # Seems to be alot, but this the event is spammed.
+   BlockUpdate: 3000 # Triggered for example when a piston extends or observers activate.
+   Explosions: 2
+   NotifyAffected: false
+
+Logger: # Working with Files and Configs. You should probably disable all loggers if your have a large playerbase.
+   Players: true # Log how often a player was in a lag producing area. May help identifying the bad guys.
+   Events: true # Log every detected Lag Event in a seperate file.
